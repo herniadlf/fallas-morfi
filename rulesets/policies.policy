@@ -1,0 +1,78 @@
+from main import Model, Time, Budget, Appetite, Skill
+
+first_sum = 0
+second_sum = 0
+
+
+# APETITO
+rule "appetite_low":
+    when:
+        $model := Model(appetite == Appetite.LOW.value)
+    then:
+        $model.evaluate_appetite_points(Appetite.LOW.value)
+
+rule "appetite_medium":
+    when:
+        $model := Model(appetite == Appetite.MEDIUM.value)
+    then:
+        $model.evaluate_appetite_points(Appetite.MEDIUM.value)
+
+rule "appetite_high":
+    when:
+        $model := Model(appetite == Appetite.HIGH.value)
+    then:
+        $model.evaluate_appetite_points(Appetite.HIGH.value)
+
+
+# Presupuesto
+rule "budget_low":
+    when:
+        $model := Model(budget == Budget.LOW.value)
+    then:
+        $model.evaluate_budget_points(Budget.LOW.value)
+
+
+rule "budget_medium":
+    when:
+        $model := Model(budget == Budget.MEDIUM.value)
+    then:
+        $model.evaluate_budget_points(Budget.MEDIUM.value)
+
+
+rule "budget_high":
+    when:
+        $model := Model(budget == Budget.HIGH.value)
+    then:
+        $model.evaluate_budget_points(Budget.HIGH.value)
+
+# Tiempo
+rule "time_low":
+    when:
+        $model := Model(time == Time.LOW.value)
+    then:
+        $model.evaluate_time_points(Time.LOW.value)
+
+rule "time_medium":
+    when:
+        $model := Model(time == Time.MEDIUM.value)
+    then:
+        $model.evaluate_time_points(Time.MEDIUM.value)
+
+rule "time_high":
+    when:
+        $model := Model(time == Time.HIGH.value)
+    then:
+        $model.evaluate_time_points(Time.HIGH.value)
+
+# Habilidad
+rule "skill_amateur":
+    when:
+        $model := Model(skill == Skill.AMATEUR.value)
+    then:
+        $model.evaluate_skill_points(Skill.AMATEUR.value)
+
+rule "skill_professional":
+    when:
+        $model := Model(skill == Skill.PROFESSIONAL.value)
+    then:
+        $model.evaluate_skill_points(Skill.PROFESSIONAL.value)
