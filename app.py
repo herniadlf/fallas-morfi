@@ -201,7 +201,6 @@ class MyIntellect(Intellect):
 def evaluate(appetite, time, budget, skill):
     myIntellect = MyIntellect()
 
-
     policy_d = myIntellect.learn(
         Intellect.local_file_uri("./rulesets/policies.policy"))
 
@@ -210,18 +209,34 @@ def evaluate(appetite, time, budget, skill):
     myIntellect.learn(model)
     myIntellect.reason()
 
-    with open('resultados.csv', 'a') as csvfile:
-        for item in myIntellect.knowledge:
-            writer = csv.writer(csvfile, delimiter=',')
-            writer.writerow([appetite, time, budget, skill, str(item.best_proposal())])
+    for item in myIntellect.knowledge:
+        return item.best_proposal()
 
 
-if __name__ == "__main__":
-    for appetite in range(1,4):
-        for time in range(1, 4):
-            for budget in range(1, 4):
-                for skill in range(1, 3):
-                    evaluate(appetite, time, budget, skill)
+#if __name__ == "__main__":
+#    for appetite in range(1,4):
+#        for time in range(1, 4):
+#            for budget in range(1, 4):
+#                for skill in range(1, 3):
+#                    evaluate(appetite, time, budget, skill)
+
+
+
+from flask import Flask
+app = Flask(__name__)
+from flask import request, jsonify
+
+
+@app.route('/', methods=['POST'])
+def suggestion():
+    parameters = request.get_json()
+    suggestion = evaluate(
+        parameters.get('appetite', None),
+        parameters.get('time', None),
+        parameters.get('budget', None),
+        parameters.get('skill', None))
+
+    return jsonify({'suggestion': str(suggestion)})
 
 """
 1 paso
