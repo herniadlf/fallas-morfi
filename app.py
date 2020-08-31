@@ -225,7 +225,9 @@ def evaluate(appetite, time, budget, skill):
 from flask import Flask
 app = Flask(__name__)
 from flask import request, jsonify
+from flask_cors import CORS
 
+CORS(app)
 
 @app.route('/', methods=['POST'])
 def suggestion():

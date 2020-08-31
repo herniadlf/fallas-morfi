@@ -1,4 +1,4 @@
 Intellect==1.4.9
 Flask==1.1.2
 enum34==1.1.10
-
+flask-cors==3.0.8
