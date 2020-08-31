@@ -1,4 +1,4 @@
-from main import Model, Time, Budget, Appetite, Skill
+from app import Model, Time, Budget, Appetite, Skill
 
 first_sum = 0
 second_sum = 0
