@@ -1,8 +1,5 @@
 from app import Model, Time, Budget, Appetite, Skill
 
-first_sum = 0
-second_sum = 0
-
 
 # APETITO
 rule "appetite_low":
@@ -10,6 +7,8 @@ rule "appetite_low":
         $model := Model(appetite == Appetite.LOW.value)
     then:
         $model.evaluate_appetite_points(Appetite.LOW.value)
+
+
 
 rule "appetite_medium":
     when:

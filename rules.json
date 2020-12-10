@@ -1,0 +1,191 @@
+{
+  "rules": [
+    {
+        "name": "appetite_low",
+        "conditions" :[
+        {
+            "attribute" : {
+                "name" : "appetite",
+                "operator": "eq",
+                "value": 1
+            }
+        }],
+        "consequences" : [
+            {
+                "method": "evaluate_appetite_points",
+                "args" : [1]
+            }
+        ]
+    },
+    {
+        "name": "appetite_medium",
+        "conditions" :[
+        {
+            "attribute" : {
+                "name" : "appetite",
+                "operator": "eq",
+                "value": 2
+            }
+        }],
+        "consequences" : [
+            {
+                "method": "evaluate_appetite_points",
+                "args" : [2]
+            }
+        ]
+    },
+    {
+        "name": "appetite_high",
+        "conditions" :[
+        {
+            "attribute" : {
+                "name" : "appetite",
+                "operator": "eq",
+                "value": 3
+            }
+        }],
+        "consequences" : [
+            {
+                "method": "evaluate_appetite_points",
+                "args" : [3]
+            }
+        ]
+    },
+    {
+        "name": "budget_low",
+        "conditions" :[
+        {
+            "attribute" : {
+                "name" : "budget",
+                "operator": "eq",
+                "value": 1
+            }
+        }],
+        "consequences" : [
+            {
+                "method": "evaluate_budget_points",
+                "args" : [1]
+            }
+        ]
+    },
+    {
+        "name": "budget_medium",
+        "conditions" :[
+        {
+            "attribute" : {
+                "name" : "budget",
+                "operator": "eq",
+                "value": 2
+            }
+        }],
+        "consequences" : [
+            {
+                "method": "evaluate_budget_points",
+                "args" : [2]
+            }
+        ]
+    },
+    {
+        "name": "budget_high",
+        "conditions" :[
+        {
+            "attribute" : {
+                "name" : "budget",
+                "operator": "eq",
+                "value": 3
+            }
+        }],
+        "consequences" : [
+            {
+                "method": "evaluate_budget_points",
+                "args" : [3]
+            }
+        ]
+    },
+    {
+        "name": "time_low",
+        "conditions" :[
+        {
+            "attribute" : {
+                "name" : "time",
+                "operator": "eq",
+                "value": 1
+            }
+        }],
+        "consequences" : [
+            {
+                "method": "evaluate_time_points",
+                "args" : [1]
+            }
+        ]
+    },
+    {
+        "name": "time_medium",
+        "conditions" :[
+        {
+            "attribute" : {
+                "name" : "time",
+                "operator": "eq",
+                "value": 2
+            }
+        }],
+        "consequences" : [
+            {
+                "method": "evaluate_time_points",
+                "args" : [2]
+            }
+        ]
+    },
+    {
+        "name": "time_high",
+        "conditions" :[
+        {
+            "attribute" : {
+                "name" : "time",
+                "operator": "eq",
+                "value": 3
+            }
+        }],
+        "consequences" : [
+            {
+                "method": "evaluate_time_points",
+                "args" : [3]
+            }
+        ]
+    },
+    {
+        "name": "skill_amateur",
+        "conditions" :[
+        {
+            "attribute" : {
+                "name" : "skill",
+                "operator": "eq",
+                "value": 1
+            }
+        }],
+        "consequences" : [
+            {
+                "method": "evaluate_skill_points",
+                "args" : [1]
+            }
+        ]
+    },
+    {
+        "name": "skill_professional",
+        "conditions" :[
+        {
+            "attribute" : {
+                "name" : "skill",
+                "operator": "eq",
+                "value": 2
+            }
+        }],
+        "consequences" : [
+            {
+                "method": "evaluate_skill_points",
+                "args" : [2]
+            }
+        ]
+    }
+  ]
+}
