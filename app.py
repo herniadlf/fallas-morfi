@@ -3,6 +3,8 @@ import sys, csv
 from intellect.Intellect import Intellect
 from enum import Enum
 
+from rule_list import RuleList
+
 
 class Time(Enum):
     LOW = 1
@@ -212,16 +214,6 @@ def evaluate(appetite, time, budget, skill):
     for item in myIntellect.knowledge:
         return item.best_proposal()
 
-
-#if __name__ == "__main__":
-#    for appetite in range(1,4):
-#        for time in range(1, 4):
-#            for budget in range(1, 4):
-#                for skill in range(1, 3):
-#                    evaluate(appetite, time, budget, skill)
-
-
-
 from flask import Flask
 app = Flask(__name__)
 from flask import request, jsonify
@@ -229,8 +221,8 @@ from flask_cors import CORS
 
 CORS(app)
 
-@app.route('/', methods=['POST'])
-def suggestion():
+@app.route('/asd', methods=['POST'])
+def suggestionOLD():
     parameters = request.get_json()
     suggestion = evaluate(
         parameters.get('appetite', None),
@@ -240,28 +232,45 @@ def suggestion():
 
     return jsonify({'suggestion': str(suggestion)})
 
-"""
-1 paso
+@app.route('/', methods=['POST'])
+def suggestion():
+    parameters = request.get_json()
+    suggestion = evaluate_v2(
+        parameters.get('appetite', None),
+        parameters.get('time', None),
+        parameters.get('budget', None),
+        parameters.get('skill', None))
 
-{
-    "appetite": LOW
-}
+    return jsonify({'suggestion': str(suggestion)})
 
-return food
+class MorfiEngine:
 
--------------------------------
+    def learn(self, rules_file):
+        self.rule_list = RuleList(rules_file)
 
-2 paso
+    def learn_model(self, model_object):
+        self.model_object = model_object
+
+    def reason(self):
+        for rule in self.rule_list.rules:
+            applies_rule = all(condition.evaluate(self.model_object) for condition in rule.conditions)
+            if applies_rule:
+                map(lambda consequence: consequence.apply(self.model_object), rule.consequences)
+
+    @property
+    def knowledge(self):
+        return self.model_object
 
 
-{
-    "appetite": LOW,
-    "budget": HIGH
-}
+def evaluate_v2(appetite, time, budget, skill):
+    engine = MorfiEngine()
 
-return food
+    engine.learn("rules.json")
 
+    model = Model(appetite=appetite, budget=budget, time=time, skill=skill)
 
+    engine.learn_model(model)
+    engine.reason()
 
+    return engine.knowledge.best_proposal()
 
-"""
