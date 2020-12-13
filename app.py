@@ -245,13 +245,20 @@ def suggestion():
 
 class MorfiEngine:
 
-    def learn(self, rules_file):
+    def learn(self, rules_file,learning_method='forward_chaining'):
         self.rule_list = RuleList(rules_file)
+        self.learning_method = learning_method
 
     def learn_model(self, model_object):
         self.model_object = model_object
 
     def reason(self):
+        if self.learning_method == 'forward_chaining':
+            self.forward_chaining()
+        else:
+            raise Exception('Not Supported learning method')
+
+    def forward_chaining(self):
         for rule in self.rule_list.rules:
             applies_rule = all(condition.evaluate(self.model_object) for condition in rule.conditions)
             if applies_rule:

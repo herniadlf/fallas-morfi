@@ -28,5 +28,3 @@ class Rule:
         for consequence_json in rule_json.get('consequences'):
             self.consequences.append(Consequence(consequence_json))
 
-
-RuleList()
