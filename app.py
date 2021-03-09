@@ -221,8 +221,8 @@ from flask_cors import CORS
 
 CORS(app)
 
-@app.route('/asd', methods=['POST'])
-def suggestionOLD():
+@app.route('/fallas1', methods=['POST'])
+def suggestion_fallas1():
     parameters = request.get_json()
     suggestion = evaluate(
         parameters.get('appetite', None),
@@ -232,8 +232,8 @@ def suggestionOLD():
 
     return jsonify({'suggestion': str(suggestion)})
 
-@app.route('/', methods=['POST'])
-def suggestion():
+@app.route('/fallas2', methods=['POST'])
+def suggestion_fallas2():
     parameters = request.get_json()
     suggestion = evaluate_v2(
         parameters.get('appetite', None),
