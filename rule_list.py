@@ -5,9 +5,9 @@ from consequence import Consequence
 
 
 class RuleList:
-    rules = []
 
     def __init__(self, file="rules.json"):
+        self.rules = []
         with open(file) as f:
             json_file = json.load(f)
 
